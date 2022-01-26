@@ -14,15 +14,21 @@ const milUniElement = document.getElementById('milUni');
 const splitsElement = document.getElementById('splits');
 
 function printTime() {
-  // ... your code goes here
+  printMinutes();
+  printSeconds();
 }
 
 function printMinutes() {
-  // ... your code goes here
+    let mins = chronometer.computeTwoDigitNumber(chronometer.getMinutes()).split('') 
+    console.log(mins)
+    minDecElement.innerText = mins[0]
+    minUniElement.innerText = mins[1]
 }
 
 function printSeconds() {
-  // ... your code goes here
+    let secs = chronometer.computeTwoDigitNumber(chronometer.getSeconds()).split('')
+    secDecElement.innerText = secs[0]
+    secUniElement.innerText = secs[1]
 }
 
 // ==> BONUS
@@ -47,7 +53,7 @@ function setSplitBtn() {
 }
 
 function setStartBtn() {
-  // ... your code goes here
+
 }
 
 function setResetBtn() {
@@ -55,11 +61,41 @@ function setResetBtn() {
 }
 
 // Start/Stop Button
-btnLeftElement.addEventListener('click', () => {
-  // ... your code goes here
+btnLeftElement.addEventListener('click', 
+(event) => {
+ // if (event.target.innerText === null){
+  //chronometer.start()} else {chronometer.stop()}
+
+  printSeconds()
+
+  btnLeftElement.classList.toggle("stop");
+  btnLeftElement.classList.toggle("start");
+  btnRightElement.classList.toggle("split");
+  btnRightElement.classList.toggle("reset");
+  
+  if (btnLeftElement.innerText === "STOP"){
+    chronometer.stop()
+    btnLeftElement.innerText = "START" 
+  } else {
+    btnLeftElement.innerText = "STOP"
+    chronometer.start(printTime)
+    
+  }
+
+  if (btnRightElement.innerText === "SPLIT"){  
+    btnRightElement.innerText = "RESET"
+  } else {
+    btnRightElement.innerText = "SPLIT"
+  }
 });
 
 // Reset/Split Button
-btnRightElement.addEventListener('click', () => {
-  // ... your code goes here
+btnRightElement.addEventListener('click', 
+(event) => {
+  if (btnRightElement.innerText === "RESET"){
+    chronometer.reset()
+    btnRightElement.innerText = "SPLIT"
+  } else {
+    btnRightElement.innerText = "RESET"
+  }
 });

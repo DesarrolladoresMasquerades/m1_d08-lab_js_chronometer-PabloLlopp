@@ -33,7 +33,7 @@ function printSeconds() {
 
 // ==> BONUS
 function printMilliseconds() {
-  
+  g
 }
 
 function printSplit() {
